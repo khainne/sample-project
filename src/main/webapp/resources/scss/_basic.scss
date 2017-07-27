@@ -1,0 +1,28 @@
+body, html {
+	padding: 0;
+	margin: 0;
+}
+
+.vistana-logo {
+	font-family: 'Roboto', sans-serif;
+	width: 250px;
+	text-align: center;
+	margin: 0 auto;
+}
+.vistana-logo--title {
+	display: block;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #5d6770;
+}
+.vistana-logo--subtitle {
+	display: block;
+	font-size: 0.9rem;
+	margin-top: -1.1rem;
+	letter-spacing: 0.1rem;
+    color: #5d6770;
+    border-top: 1px solid #ccc;
+    padding: 0.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
