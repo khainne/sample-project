@@ -1,0 +1,22 @@
+.button-group {
+
+}
+
+button, .button {
+	line-height: 2rem;
+    background-color: #05a6ce;
+    color: #fff;
+    padding: 0.5rem;
+    display: block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    max-width: 200px;
+    border-radius: 0.3rem;
+    box-shadow: 0 10px 27px -18px #000;
+    transition: background-color 0.25s, box-shadow 0.25s;
+    &:hover {
+    	background-color: #6dcbe2;
+    	box-shadow: 0 10px 27px -15px #000;
+    }
+}

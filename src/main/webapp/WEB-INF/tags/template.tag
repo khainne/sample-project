@@ -28,10 +28,12 @@
         <jsp:invoke fragment="header" />
 	</head>
     <body class="${bodyCssClass}">
-    	<div class="vistana-logo">
-    		<vistana:svgVistanaLogo />
-    		<span class="vistana-logo--subtitle">Sample Application by</span> <span class="vistana-logo--title">Jason Muscarella</span> 
-		</div>
+    	<header>
+	    	<div class="vistana-logo">
+	    		<vistana:svgVistanaLogo />
+	    		<span class="vistana-logo--subtitle"><spring:message code="global.logo.subHeading" /></span> <span class="vistana-logo--title"><spring:message code="global.logo.heading" /></span> 
+			</div>
+		</header>
         <jsp:doBody/>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

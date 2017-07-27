@@ -15,6 +15,13 @@
 		
 	</jsp:attribute>
 	<jsp:body>
-		
+		<div class="content">
+			<h1>Welcome to the Sample Application</h1>
+			<p>Thank you for trying out the sample application, if you already have an account please <a href="">login</a>, if not you may <a href="">sign-up</a>.</p>
+			<div class="button-group">
+				<a href="#" class="button">Login</a>
+				<a href="#" class="button secondary">Sign-Up</a>
+			</div>
+		</div>
 	</jsp:body>
 </vistana:template>
