@@ -1,0 +1,92 @@
+.modal-stage {
+	    pointer-events: none;
+	cursor: default;
+	 position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    overflow: hidden;
+}
+.modal-overlay {
+	opacity: 0;
+	    background-color: rgba(0, 0, 0, 0.46);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    padding: 1.2rem;
+    transition: opacity 0.35s;
+    pointer-events: none;
+	cursor: default;
+    &.is-visible {
+    	pointer-events: auto;
+    	opacity: 1;
+    }
+}
+
+.modal {
+	opacity: 0;
+	margin: auto;
+	background-color: #fff;
+	box-shadow: 0px 7px 146px -37px #000;
+	position: relative;
+	transition-timing-function: ease-in;
+	transition: opacity 0.25s, transform 0.5s;
+	transform: perspective(1000px) rotateX( -30deg ) translate3d(0px,0px,100px);
+	pointer-events: none;
+	cursor: default;
+
+	&.is-visible {
+		pointer-events: auto;
+		opacity: 1;
+		transition-timing-function: ease-out;
+		transform: perspective(1000px) rotateX( 0deg ) translate3d(0px,0px,0px);
+	}
+}
+.modal--content {
+	padding: 2rem;
+
+	h1 {
+		margin: 0;
+	    margin-bottom: 1rem;
+	    border-bottom: 1px solid #CCC;
+	    padding-bottom: 0.5rem;
+	    @include media("<=phone") {
+    		font-size: 1.6rem;
+    	}
+	}
+
+	form {
+
+	}
+
+	button {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.modal--close {
+	position: absolute;
+    right: -0.5rem;
+    top: -0.5rem;
+    width: 36px;
+    height: 36px;
+    display: block;
+    background-color: #c3d3d7;
+    border-radius: 100%;
+    transition: background-color 0.25s;
+    svg {
+    	margin-top: 6px;
+    	path {
+    		fill: #fff;
+    	}
+    }
+    &:hover {
+    	background-color: #96dced;
+    }
+}

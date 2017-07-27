@@ -1,20 +1,31 @@
 .button-group {
-
+	.button {
+		max-width: 100%;
+	}
+	.row {
+		margin: 1rem 0.5rem;
+	}
+	.column {
+		padding: 0.5rem;
+	}
 }
 
 button, .button {
 	line-height: 2rem;
     background-color: #05a6ce;
     color: #fff;
-    padding: 0.5rem;
+    padding: 0.6rem;
+    font-weight: 300;
     display: block;
     text-decoration: none;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     max-width: 200px;
     border-radius: 0.3rem;
     box-shadow: 0 10px 27px -18px #000;
     transition: background-color 0.25s, box-shadow 0.25s;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
     &:hover {
     	background-color: #6dcbe2;
     	box-shadow: 0 10px 27px -15px #000;

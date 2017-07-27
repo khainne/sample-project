@@ -34,9 +34,11 @@
 	    		<span class="vistana-logo--subtitle"><spring:message code="global.logo.subHeading" /></span> <span class="vistana-logo--title"><spring:message code="global.logo.heading" /></span> 
 			</div>
 		</header>
-        <jsp:doBody/>
-
+		<div class="content">
+        	<jsp:doBody/>
+		</div>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="<c:url value="/resources/js/app.js"/>"></script>
 		<jsp:invoke fragment="script" />
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

@@ -7,6 +7,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="vistana" tagdir="/WEB-INF/tags"%>
 
+<c:url value="/sign-up" var="signupURL" />
+
 <vistana:template title="welcome.title">
 	<jsp:attribute name="header">
 		
@@ -15,13 +17,42 @@
 		
 	</jsp:attribute>
 	<jsp:body>
-		<div class="content">
+		
 			<h1>Welcome to the Sample Application</h1>
-			<p>Thank you for trying out the sample application, if you already have an account please <a href="">login</a>, if not you may <a href="">sign-up</a>.</p>
+			<p>Thank you for trying out the sample application, if you already have an account please <a href="#" data-modal-id="modal-login">login</a>, if not you may <a href="${signupURL}">sign-up</a>.</p>
 			<div class="button-group">
-				<a href="#" class="button">Login</a>
-				<a href="#" class="button secondary">Sign-Up</a>
+				<div class="row">
+					<div class="column medium-6">
+						<a href="#" class="button" data-modal-id="modal-login">Login</a>
+					</div>
+					<div class="column medium-6">
+						<a href="${signupURL}" class="button secondary">Sign-Up</a>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div class="modal-stage">
+			<div id="modal-overlay" class="modal-overlay">
+			</div>
+				<div id="modal-login" class="modal js-modal">
+				<a href="#" class="modal--close js-modal-close"><vistana:svgIcon height="24" width="24" icon="close" title="global.modal.close" /></a>
+					<div class="modal--content">
+						<h1>Login to Your Account</h1>
+							<div class="input-group">
+								<div class="row">
+									<div class="column medium-12">
+										<label for="username">Username</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="column medium-12">
+										<input id="username" name="username" type="text" />
+									</div>
+								</div>
+							</div>
+							<button type="submit">Login</button>
+						</form>
+					</div>
+				</div>
+			</div>
 	</jsp:body>
 </vistana:template>

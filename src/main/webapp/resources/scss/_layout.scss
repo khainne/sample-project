@@ -20,7 +20,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .content {
-	max-width: 1025px;
+	max-width: 600px;
 	padding: 1rem;
 	box-sizing: border-box;
 	margin: 0 auto;
@@ -34,7 +34,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   		clear: both;
 	}
 	.column {
-		
+		box-sizing: border-box;
 		&.medium-1 {
 		
 			width: 8.33%;

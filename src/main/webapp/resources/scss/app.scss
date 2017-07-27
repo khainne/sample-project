@@ -1,11 +1,13 @@
 @charset 'UTF-8';
+$breakpoints: (phone: 320px, login-phone: 360px, terms-phone: 420px, terms-button-group: 650px, tablet: 768px, desktop: 1024px);
 @import "compass/css3/";
 @import url(//fonts.googleapis.com/css?family=Roboto:100);
 @import url(//fonts.googleapis.com/css?family=Roboto:300);
 @import url(//fonts.googleapis.com/css?family=Roboto:400);
 @import url(//fonts.googleapis.com/css?family=Roboto:500);
+@import "include-media";
 @import "basic";
 @import "layout";
 @import "buttons";
-
-
+@import "inputs";
+@import "modal";
