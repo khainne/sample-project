@@ -17,7 +17,12 @@
 		
 	</jsp:attribute>
 	<jsp:body>
-	${session.user.username}
+	<c:if test="${!empty session.user && session.user.isValid()}">
+		<div class="alert">
+			<h1>New User Created!</h1>
+			<p>Thanks for signing up, you can now <a href="#" data-modal-id="modal-login">login</a></p>
+		</div>
+	</c:if>
 			<h1>Welcome to the Sample Application</h1>
 			<p>Thank you for trying out the sample application, if you already have an account please <a href="#" data-modal-id="modal-login">login</a>, if not you may <a href="${signupURL}">sign-up</a>.</p>
 			<div class="button-group">

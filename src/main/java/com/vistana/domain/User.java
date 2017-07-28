@@ -15,7 +15,7 @@ public class User {
 		return username;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.username = username.trim().toLowerCase();
 	}
 	public Date getDob() {
 		return dob;
@@ -29,5 +29,10 @@ public class User {
 	public void setSecurityQuestionAnswers(List<SecurityQuestionAnswer> securityQuestionAnswers) {
 		this.securityQuestionAnswers = securityQuestionAnswers;
 	}
-	
+	public Boolean isValid() {
+		if (username != null && dob != null && securityQuestionAnswers.size() > 0) {
+			return true;
+		}
+		return false;
+	}
 }

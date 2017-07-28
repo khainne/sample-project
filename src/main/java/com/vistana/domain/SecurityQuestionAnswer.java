@@ -17,6 +17,6 @@ public class SecurityQuestionAnswer {
 		return answer;
 	}
 	public void setAnswer(String answer) {
-		this.answer = answer;
+		this.answer = answer.trim().toLowerCase();
 	}
 }
