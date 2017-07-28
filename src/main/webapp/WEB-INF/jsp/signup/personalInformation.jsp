@@ -12,7 +12,30 @@
 		
 	</jsp:attribute>
 	<jsp:attribute name="script">
-		
+		<script src="<c:url value="/resources/js/jquery.inputmask.bundle.min.js"/>"></script>
+		<script>
+			$(window).load(function() {
+			       var date = [{ "mask": "##/##/####"}];
+			       $('.js-date').inputmask({ 
+			            mask: date, 
+			            greedy: false, 
+			            definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
+			        $('.js-alpha-numeric').keypress(function (event) {
+			            return isAlphaNumeric(event, this)
+                    });
+			    });
+			
+			function isAlphaNumeric(evt, element) {
+					var code = (evt.which) ? evt.which : event.keyCode
+					if (!(code > 47 && code < 58) && // numeric (0-9)
+					!(code > 64 && code < 91) && // upper alpha (A-Z)
+					!(code > 96 && code < 123)) { // lower alpha (a-z)
+					return false;
+				} else {
+					return true;
+				}
+		    }
+		</script>
 	</jsp:attribute>
 	<jsp:body>
 		
@@ -24,7 +47,7 @@
                   <form:label path="username" cssErrorClass="error">Username</form:label>
                </div>
                <div class="column medium-8">
-                  <form:input path="username" cssErrorClass="error" maxlength="12" />
+                  <form:input path="username" cssClass="js-alpha-numeric" cssErrorClass="error js-alpha-numeric" maxlength="12" />
                   <form:errors path="username" cssClass="error" element="span" />
                </div>
             </div>
@@ -33,7 +56,7 @@
                   <form:label path="dob" cssErrorClass="error">Date of Birth</form:label>
                </div>
                <div class="column medium-8">
-                  <form:input path="dob" cssErrorClass="error" maxlength="10" />
+                  <form:input path="dob" cssClass="js-date" cssErrorClass="error js-date" maxlength="10" />
                   <form:errors path="dob" cssClass="error" element="span" />
                </div>
             </div>

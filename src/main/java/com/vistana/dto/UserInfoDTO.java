@@ -2,6 +2,7 @@ package com.vistana.dto;
 
 import java.util.Date;
 
+
 public class UserInfoDTO {
 	private String username;
 	private Date dob;
