@@ -11,22 +11,25 @@ import com.vistana.domain.User;
 public class ApplicationSession {
 	private User user;
 	private boolean isLoggedIn;
-	
+	private boolean isValidated;
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public boolean isLoggedIn() {
+
+	public boolean getIsLoggedIn() {
 		return isLoggedIn;
 	}
-	public void setLoggedIn(boolean isLoggedIn) {
+	public void setIsLoggedIn(boolean isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
 	}
-	@Override
-	public String toString() {
-		return "ApplicationSession [user=" + user + ", isLoggedIn=" + isLoggedIn + "]";
+	public boolean getIsValidated() {
+		return isValidated;
+	}
+	public void setIsValidated(boolean isValidated) {
+		this.isValidated = isValidated;
 	}
 	
 }

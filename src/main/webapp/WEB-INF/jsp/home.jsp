@@ -14,7 +14,23 @@
 		
 	</jsp:attribute>
 	<jsp:attribute name="script">
-		
+		<script>
+			$(document).ready(function() {
+				$('#validateUsernameForm').submit(function( event ) {
+					event.preventDefault();
+					var url = $(this).attr("action");
+					var response = $.post( url, { username: $(this).find( "input[name='username']" ).val() } );
+					response.done(function() {
+						var isValidUser = response.responseText;
+						if (isValidUser == "true") {
+							window.location = "<c:url value='/validate' />";
+						}
+					}).fail(function() {
+						console.log( "error" );
+					})
+				});
+			});
+		</script>
 	</jsp:attribute>
 	<jsp:body>
 	<c:if test="${!empty session.user && session.user.isValid()}">
@@ -42,6 +58,7 @@
 				<a href="#" class="modal--close js-modal-close"><vistana:svgIcon height="24" width="24" icon="close" title="global.modal.close" /></a>
 					<div class="modal--content">
 						<h1>Login to Your Account</h1>
+						<form action="<c:url value="/validate-username"/>" id="validateUsernameForm">
 							<div class="input-group">
 								<div class="row">
 									<div class="column medium-12">

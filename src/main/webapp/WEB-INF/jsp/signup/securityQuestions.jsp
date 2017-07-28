@@ -16,8 +16,8 @@
 	</jsp:attribute>
 	<jsp:body>
 		
-			<h1>Sign Up for an Account</h1>
-			<p>To get started, let's collect some of your personal information.</p>
+			<h1>Select and Answer Security Questions</h1>
+			<p>Please choose 3 security questions and provide an answer to each.</p>
 			<form:form id="securityQuestionForm" method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate">
        		<c:forEach var="i" begin="0" end="${numberOfQuestions - 1}">
        			<div class="row">
