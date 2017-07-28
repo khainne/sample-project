@@ -17,7 +17,7 @@
 		
 	</jsp:attribute>
 	<jsp:body>
-		
+	${session.user.username}
 			<h1>Welcome to the Sample Application</h1>
 			<p>Thank you for trying out the sample application, if you already have an account please <a href="#" data-modal-id="modal-login">login</a>, if not you may <a href="${signupURL}">sign-up</a>.</p>
 			<div class="button-group">

@@ -9,6 +9,8 @@ public class User {
 	private Date dob;
 	private List<SecurityQuestionAnswer> securityQuestionAnswers;
 	
+	public User(){}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -24,7 +26,7 @@ public class User {
 	public List<SecurityQuestionAnswer> getSecurityQuestionAnswers() {
 		return securityQuestionAnswers;
 	}
-	public void setSecurityQuestions(List<SecurityQuestionAnswer> securityQuestionAnswers) {
+	public void setSecurityQuestionAnswers(List<SecurityQuestionAnswer> securityQuestionAnswers) {
 		this.securityQuestionAnswers = securityQuestionAnswers;
 	}
 	

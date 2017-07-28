@@ -18,25 +18,43 @@
 		
 			<h1>Sign Up for an Account</h1>
 			<p>To get started, let's collect some of your personal information.</p>
-			<form:form method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate">
-       		<div class="row">
+			<form:form id="securityQuestionForm" method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate">
+       		<c:forEach var="i" begin="0" end="${numberOfQuestions - 1}">
+       			<div class="row">
       		   <div class="column medium-4">
-                  <form:label path="username" cssErrorClass="error">Username</form:label>
+                  <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error">Question</form:label>
                </div>
                <div class="column medium-8">
-                  <form:input path="username" cssErrorClass="error" maxlength="12" />
-                  <form:errors path="username" cssClass="error" element="span" />
+               	  <select class="js-security-question-select">
+					  <option value="-1">Select a Question</option>
+					  <c:forEach items="${securityQuestions}" var="question">
+					  	<c:choose>
+					  		<c:when test="${!empty securityQuestionsForm.securityQuestionAnswers[i].securityQuestion && securityQuestionsForm.securityQuestionAnswers[i].securityQuestion eq question }">
+					  			<option value="${question}" selected>${question.question}</option>
+					  		</c:when>
+					  		<c:otherwise>
+					  			<option value="${question}">${question.question}</option>		
+					  		</c:otherwise>
+					  	</c:choose>
+					  	
+					  </c:forEach>
+				  </select>
+                  <form:hidden path="securityQuestionAnswers[${i}].securityQuestion" />
+                  <form:errors path="securityQuestionAnswers[${i}].securityQuestion" cssClass="error" element="span" />
                </div>
             </div>
             <div class="row">
       		   <div class="column medium-4">
-                  <form:label path="dob" cssErrorClass="error">Date of Birth</form:label>
+                  <form:label path="securityQuestionAnswers[${i}].answer" cssErrorClass="error">Answer</form:label>
                </div>
                <div class="column medium-8">
-                  <form:input path="dob" cssErrorClass="error" maxlength="10" />
-                  <form:errors path="dob" cssClass="error" element="span" />
+                  <form:input path="securityQuestionAnswers[${i}].answer" cssErrorClass="error"  />
+                  <form:errors path="securityQuestionAnswers[${i}].answer" cssClass="error" element="span" />
                </div>
             </div>
+       		</c:forEach>
+       		
+            
             <button type="submit">Continue</button>
         	</form:form>
 
