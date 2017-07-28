@@ -33,7 +33,7 @@
 		</script>
 	</jsp:attribute>
 	<jsp:body>
-	<c:if test="${!empty session.user && session.user.isValid()}">
+	<c:if test="${!empty session && !empty session.user && session.user.isValid()}">
 		<div class="alert">
 			<h1>New User Created!</h1>
 			<p>Thanks for signing up, you can now <a href="#" data-modal-id="modal-login">login</a></p>

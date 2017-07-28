@@ -24,11 +24,25 @@
     -ms-transition: border-color .15s linear,background .15s linear;
     -o-transition: border-color .15s linear,background .15s linear;
     transition: border-color .15s linear,background .15s linear;
-}
 
+    &.error {
+        margin-bottom: 0;
+        border-color: red;
+    }
+}
+span {
+    &.error {
+        padding: 0.3rem 0.5rem;
+        background-color: red;
+        color: #fff;
+        margin-bottom: 1rem;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+    }
+}
 select {
-        -webkit-appearance: none;
-    -moz-appearance: none;
+
     border-radius: 0;
     background-color: #fff;
     border-style: solid;
