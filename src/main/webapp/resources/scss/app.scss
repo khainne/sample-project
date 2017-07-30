@@ -1,5 +1,6 @@
 @charset 'UTF-8';
 $breakpoints: (phone: 320px, login-phone: 360px, terms-phone: 420px, terms-button-group: 650px, tablet: 768px, desktop: 1024px);
+$vistana-red: #f1647d;
 @import "compass/css3/";
 @import url(//fonts.googleapis.com/css?family=Roboto:100);
 @import url(//fonts.googleapis.com/css?family=Roboto:300);

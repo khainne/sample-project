@@ -25,6 +25,7 @@
                   <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error">Question</form:label>
                </div>
                <div class="column medium-8">
+               	  <div class="select-wrapper">
                	  <select class="js-security-question-select">
 					  <option value="-1">Select a Question</option>
 					  <c:forEach items="${securityQuestions}" var="question">
@@ -36,11 +37,11 @@
 					  			<option value="${question}">${question.question}</option>		
 					  		</c:otherwise>
 					  	</c:choose>
-					  	
 					  </c:forEach>
 				  </select>
-                  <form:hidden path="securityQuestionAnswers[${i}].securityQuestion" />
                   <form:errors path="securityQuestionAnswers[${i}].securityQuestion" cssClass="error" element="span" />
+                  <form:hidden path="securityQuestionAnswers[${i}].securityQuestion" />
+                  </div>
                </div>
             </div>
             <div class="row">
@@ -53,9 +54,14 @@
                </div>
             </div>
        		</c:forEach>
-       		
-            
-            <button type="submit">Continue</button>
+       		<div class="row">
+      		   <div class="column medium-4">
+                  
+               </div>
+               <div class="column medium-8">
+                  <button type="submit">Continue</button>
+               </div>
+            </div>
         	</form:form>
 
 	</jsp:body>

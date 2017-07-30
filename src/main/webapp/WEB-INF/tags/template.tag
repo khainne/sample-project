@@ -37,7 +37,12 @@
 		<div class="content">
         	<jsp:doBody/>
 		</div>
+		<script>
+			var context = "<c:url value="/" />";
+			var local = "<c:out value="${pageContext.request.locale.language}"/>"; 
+		</script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="<c:url value="/resources/js/jquery.i18n.properties.min.js"/>"></script>
         <script src="<c:url value="/resources/js/app.js"/>"></script>
 		<jsp:invoke fragment="script" />
         <script>

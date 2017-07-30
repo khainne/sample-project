@@ -60,7 +60,9 @@
                   <form:errors path="dob" cssClass="error" element="span" />
                </div>
             </div>
-            <button type="submit">Continue</button>
+            <div class="button-collection">
+            	<button type="submit">Continue</button>
+            </div>
         	</form:form>
 
 	</jsp:body>

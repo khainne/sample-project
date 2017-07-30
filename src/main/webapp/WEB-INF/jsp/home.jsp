@@ -18,16 +18,25 @@
 			$(document).ready(function() {
 				$('#validateUsernameForm').submit(function( event ) {
 					event.preventDefault();
+					var errorDisplay = $(".js-login-errors");
+					
 					var url = $(this).attr("action");
 					var response = $.post( url, { username: $(this).find( "input[name='username']" ).val() } );
 					response.done(function() {
-						var isValidUser = response.responseText;
-						if (isValidUser == "true") {
+						var isValidUser = response.responseJSON;
+						console.log(response.responseText)
+						if (isValidUser) {
 							window.location = "<c:url value='/validate' />";
+						} else {
+							displayError(error.login.invalid);
 						}
 					}).fail(function() {
-						console.log( "error" );
+						displayError(error.login.failure);
 					})
+					function displayError(message) {
+						errorDisplay.empty();
+						errorDisplay.prepend( "<span class=\"error\">" + message + "</span>" ).fadeIn('slow');
+					}
 				});
 			});
 		</script>
@@ -59,6 +68,7 @@
 					<div class="modal--content">
 						<h1>Login to Your Account</h1>
 						<form action="<c:url value="/validate-username"/>" id="validateUsernameForm">
+							<div class="modal--errors js-modal-error-display js-login-errors"></div>
 							<div class="input-group">
 								<div class="row">
 									<div class="column medium-12">

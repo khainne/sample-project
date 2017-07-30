@@ -1,8 +1,26 @@
+jQuery.i18n.properties({
+    name:'messages', 
+    path: context + '/resources/js/i18n/', 
+    mode:'both',
+    language: local,
+    async: true
+});
+
 $(document).ready(function() {
 	initModal();
 	
 	if ($("#securityQuestionForm").length) {
 		initSecurityQuestionForm();
+	}
+	
+	var selectAreas = $("select");
+	if (selectAreas.length) {
+		selectAreas.each(function() {
+			var selectArea = $(this);
+			if( selectArea.next().hasClass('error')) {
+				selectArea.addClass('error');
+			}
+		});
 	}
 });
 
@@ -39,6 +57,9 @@ function initModal() {
 	});
 	
 	function closeModal() {
+		$('.js-modal-error-display').slideUp("slow", function() {
+		   $("this").empty();
+		});;
 		modalOverlay.removeClass('is-visible');
 		modals.removeClass('is-visible');
 	}
@@ -52,7 +73,7 @@ function initSecurityQuestionForm() {
 	securitySelects.on("change", function(e) {
 		var select = $(this);
 		var value = select.val();
-		var hiddenInput = select.next();
+		var hiddenInput = select.siblings('input[type=hidden]');
 		if(value != -1) {
 			hiddenInput.val(value);
 		} else {

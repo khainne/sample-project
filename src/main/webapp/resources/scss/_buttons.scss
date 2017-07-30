@@ -30,4 +30,7 @@ button, .button {
     	background-color: #6dcbe2;
     	box-shadow: 0 10px 27px -15px #000;
     }
+    form & {
+        width: 100%;
+    }
 }
