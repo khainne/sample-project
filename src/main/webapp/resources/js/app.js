@@ -8,7 +8,7 @@ jQuery.i18n.properties({
 
 $(document).ready(function() {
 	initModal();
-	
+	autoFocus();
 	if ($("#securityQuestionForm").length) {
 		initSecurityQuestionForm();
 	}
@@ -24,7 +24,9 @@ $(document).ready(function() {
 	}
 });
 
-
+function autoFocus() {
+	$("form").find(".js-auto-focus").focus();
+};
 
 function initModal() {
 	
@@ -41,7 +43,6 @@ function initModal() {
 	   modalOverlay.addClass('is-visible');
 	   
 	   var firstInput = modal.find("input:first");
-	   console.log(firstInput);
 	   firstInput.focus();
 	   
 	});

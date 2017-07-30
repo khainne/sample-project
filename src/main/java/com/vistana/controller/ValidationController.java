@@ -33,15 +33,7 @@ public class ValidationController {
 	@RequestMapping(method=RequestMethod.POST, value="/validate-username")
 	@ResponseBody
 	public Boolean processValidateUsername(@ModelAttribute("username") String username) {
-		
-		Boolean userExists = false;
-		if(session.getUser() != null && username.equals(session.getUser().getUsername())) {
-			userExists = true;
-			session.setIsValidated(true);
-		}
-		
-		return userExists;
-		
+		return validateUserService.validateLogin(username);
 	}
 	
 	@RequestMapping("/validate")

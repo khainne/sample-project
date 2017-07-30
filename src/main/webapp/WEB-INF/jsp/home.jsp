@@ -19,33 +19,52 @@
 				$('#validateUsernameForm').submit(function( event ) {
 					event.preventDefault();
 					var errorDisplay = $(".js-login-errors");
+					var username = $(this).find( "input[name='username']" ).val();
+					if (usernameIsValid(username)) {
+						var url = $(this).attr("action");
+						var response = $.post( url, { username: $(this).find( "input[name='username']" ).val() } );
+						response.done(function() {
+							var isValidUser = response.responseJSON;
+							if (isValidUser) {
+								window.location = "<c:url value='/validate' />";
+							} else {
+								displayError(error.login.invalid);
+							}
+						}).fail(function() {
+							displayError(error.login.failure);
+						})
+					} else {
+						displayError(error.login.invalidUsernameFormat);
+					}
 					
-					var url = $(this).attr("action");
-					var response = $.post( url, { username: $(this).find( "input[name='username']" ).val() } );
-					response.done(function() {
-						var isValidUser = response.responseJSON;
-						console.log(response.responseText)
-						if (isValidUser) {
-							window.location = "<c:url value='/validate' />";
-						} else {
-							displayError(error.login.invalid);
-						}
-					}).fail(function() {
-						displayError(error.login.failure);
-					})
 					function displayError(message) {
 						errorDisplay.empty();
 						errorDisplay.prepend( "<span class=\"error\">" + message + "</span>" ).fadeIn('slow');
 					}
 				});
 			});
+			
+			function usernameIsValid(username) {
+				if(username.match(/^[a-zA-Z0-9]{5,12}$/)) {
+					return true;
+				}
+				return false;
+			}
 		</script>
 	</jsp:attribute>
 	<jsp:body>
 	<c:if test="${!empty session && !empty session.user && session.user.isValid()}">
 		<div class="alert">
-			<h1>New User Created!</h1>
-			<p>Thanks for signing up, you can now <a href="#" data-modal-id="modal-login">login</a></p>
+			<c:choose>
+				<c:when test="${session.isLoggedIn}">
+					<h1>Welcome ${session.user.username}!</h1>
+					<p>You can visit <a href="<c:url value="/user-dashboard" />">your dashboard</a>, or <a href="<c:url value="/logout" />">logout</a></p>
+				</c:when>
+				<c:otherwise>
+					<h1>New User Created!</h1>
+					<p>Thanks for signing up, you can now <a href="#" data-modal-id="modal-login">login</a></p>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</c:if>
 			<h1>Welcome to the Sample Application</h1>
@@ -67,7 +86,7 @@
 				<a href="#" class="modal--close js-modal-close"><vistana:svgIcon height="24" width="24" icon="close" title="global.modal.close" /></a>
 					<div class="modal--content">
 						<h1>Login to Your Account</h1>
-						<form action="<c:url value="/validate-username"/>" id="validateUsernameForm">
+						<form action="<c:url value="/validate-username"/>" id="validateUsernameForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 							<div class="modal--errors js-modal-error-display js-login-errors"></div>
 							<div class="input-group">
 								<div class="row">
@@ -77,7 +96,7 @@
 								</div>
 								<div class="row">
 									<div class="column medium-12">
-										<input id="username" name="username" type="text" />
+										<input id="username" name="username" type="text" maxlength="12" />
 									</div>
 								</div>
 							</div>

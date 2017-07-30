@@ -17,10 +17,13 @@ background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /*
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 
 	}
+	@include media("<=medium") {
+		padding-bottom: 0.5rem;
+	}
 }
 
 .content {
-	max-width: 600px;
+	max-width: 660px;
 	padding: 1rem;
 	box-sizing: border-box;
 	margin: 0 auto;
@@ -35,64 +38,75 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	}
 	.column {
 		box-sizing: border-box;
+		float: left;
+		&:after {
+			content: "";
+	  		display: table;
+	  		clear: both;
+		}
+  		&:last-child {
+  			float:right;
+  		}
 		&.medium-1 {
-		
-			width: 8.33%;
-			float: left;
-		
+		   width: 8.33%;
 		}
 		&.medium-2 {
-		
 			width: 16.66%;
-			float: left;
-		
 		}
 		&.medium-3 {
-		
 			width: 25%;
-			float: left;
-		
 		}
 		&.medium-4 {
-		
 			width: 33.33%;
-			float: left;
-		
 		}
 		&.medium-5 {
-		
 			width: 41.66%;
-			float: left;
-		
 		}
 		&.medium-6 {
 			width: 50%;
-			float: left;
 		}
 		&.medium-7 {
 			width: 58.33%;
-			float: left;
 		}
 		&.medium-8 {
 			width: 66.66%;
-			float: left;
 		}
 		&.medium-9 {
 			width: 75%;
-			float: left;
 		}
 		&.medium-10 {
 			width: 83.33%;
-			float: left;
 		}
 		&.medium-11 {
 			width: 91.66%;
-			float: left;
 		}
 		&.medium-12 {
 			width: 100%;
-			float: left;
+		}
+		@include media("<=medium") {
+			&.medium-1, &.medium-2, &.medium-3, &.medium-4, &.medium-5, &.medium-6, &.medium-7, &.medium-8, &.medium-9, &.medium-10, &.medium-11, &.medium-12 {
+				width: 100%;
+				float: none;
+			}
 		}
 	}
 	
+}
+
+.form {
+	background-color: #fbfbfb;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    @include media("<=medium") {
+    	margin-left: -1rem;
+    	margin-right: -1rem;
+    }
+}
+.form--prompt {
+	background-color: #f4fbfd;
+    padding: 0.1rem 1rem;
+    margin: -1.5rem -1.5rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+    color: #32889d;
+    font-size: 1rem;
 }

@@ -18,7 +18,8 @@
 			       var date = [{ "mask": "##/##/####"}];
 			       $('.js-date').inputmask({ 
 			            mask: date, 
-			            greedy: false, 
+			            greedy: false,
+			            placeholder: "dd/mm/yyyy",
 			            definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
 			        $('.js-alpha-numeric').keypress(function (event) {
 			            return isAlphaNumeric(event, this)
@@ -40,28 +41,38 @@
 	<jsp:body>
 		
 			<h1>Sign Up for an Account</h1>
-			<p>To get started, let's collect some of your personal information.</p>
-			<form:form method="post" modelAttribute="userForm" novalidate="novalidate">
+			<form:form method="post" cssClass="form" modelAttribute="userForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+       		<div class="form--prompt">
+       			<p>To get started, let's collect some of your personal information.</p>
+       		</div>
        		<div class="row">
-      		   <div class="column medium-4">
+      		   <div class="column medium-3">
                   <form:label path="username" cssErrorClass="error">Username</form:label>
                </div>
-               <div class="column medium-8">
-                  <form:input path="username" cssClass="js-alpha-numeric" cssErrorClass="error js-alpha-numeric" maxlength="12" />
-                  <form:errors path="username" cssClass="error" element="span" />
+               <div class="column medium-9">
+               	  <div class="input-tooltip-wrapper">
+	                  <form:input path="username" cssClass="js-auto-focus js-alpha-numeric" cssErrorClass="error js-auto-focus js-alpha-numeric" maxlength="12" />
+	                  <span class="input-tooltip">Your username must be between 5 and 12 characters and only contain letters and numbers</span>
+	                  <form:errors path="username" cssClass="error" element="span" />
+                  </div>
                </div>
             </div>
             <div class="row">
-      		   <div class="column medium-4">
+      		   <div class="column medium-3">
                   <form:label path="dob" cssErrorClass="error">Date of Birth</form:label>
                </div>
-               <div class="column medium-8">
+               <div class="column medium-9">
                   <form:input path="dob" cssClass="js-date" cssErrorClass="error js-date" maxlength="10" />
                   <form:errors path="dob" cssClass="error" element="span" />
                </div>
             </div>
-            <div class="button-collection">
-            	<button type="submit">Continue</button>
+            <div class="row">
+      		   <div class="column medium-3 empty">
+                  
+               </div>
+               <div class="column medium-9">
+                  <button type="submit">Continue</button>
+               </div>
             </div>
         	</form:form>
 

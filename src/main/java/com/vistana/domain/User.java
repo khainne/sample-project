@@ -30,7 +30,7 @@ public class User {
 		this.securityQuestionAnswers = securityQuestionAnswers;
 	}
 	public Boolean isValid() {
-		if (username != null && dob != null && securityQuestionAnswers.size() > 0) {
+		if (username != null && dob != null && securityQuestionAnswers != null && securityQuestionAnswers.size() > 0) {
 			return true;
 		}
 		return false;

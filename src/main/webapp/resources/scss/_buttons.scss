@@ -11,6 +11,8 @@
 }
 
 button, .button {
+    cursor: pointer;
+    cursor: hand;
 	line-height: 2rem;
     background-color: #05a6ce;
     color: #fff;
@@ -32,5 +34,11 @@ button, .button {
     }
     form & {
         width: 100%;
+        @include media("<=medium") {
+            max-width: 100%;
+        }
+    }
+    &.centered {
+        margin: 0 auto;
     }
 }

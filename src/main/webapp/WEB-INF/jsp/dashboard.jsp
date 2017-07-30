@@ -20,7 +20,7 @@
 	<c:if test="${!empty session.user && session.isLoggedIn}">
 		<h1>Welcome ${session.user.username}!</h1>
 		<p>Thanks for logging in, your date of birth is <fmt:formatDate pattern="MMMM dd, yyyy" value="${session.user.dob}" /></p>
-		<a href="<c:url value="/logout" />">Logout</a>
+		<a class="button centered" href="<c:url value="/logout" />">Logout</a>
 	</c:if>
 	</jsp:body>
 </vistana:template>

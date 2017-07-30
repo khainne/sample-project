@@ -9,6 +9,14 @@ body, html {
 	width: 250px;
 	text-align: center;
 	margin: 0 auto;
+	@include media("<=medium") {
+		
+		width: 40%;
+		span {
+
+			display: none;
+		}
+	}
 }
 .vistana-logo--title {
 	display: block;
@@ -31,5 +39,26 @@ body, html {
 h1 {
 	font-weight: 300;
     color: #5d6770;
+    @include media("<=medium") {
+    	font-size: 1.5rem;
+    }
 }
     
+.alert {
+	background-color: #eaffda;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    h1 {
+    	margin: 0;
+    }
+    p {
+    	margin: 1rem;
+    	&:first-of-type {
+    		margin-top: 0;
+    	}
+    	&:last-child {
+    		margin-bottom: 0;
+    	}
+    }
+}

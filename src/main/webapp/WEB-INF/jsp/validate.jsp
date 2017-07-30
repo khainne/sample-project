@@ -16,11 +16,17 @@
 	</jsp:attribute>
 	<jsp:body>
 		
-			<h1>Answer Security Question</h1>
-			<form:form id="validateUserForm" method="post" modelAttribute="validateUserForm" novalidate="novalidate">
+			<h1>Account Verification</h1>
+			<form:form cssClass="form" id="validateUserForm" method="post" modelAttribute="validateUserForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+       		<div class="form--prompt">
+				<p>Answer the security question to verify your account</p>
+			</div>
        		<div class="row">
-      		   <div class="column medium-12">
-                  <p>${validateUserForm.question.question}</p>
+       			<div class="column medium-4">
+                  <span class="label">Your Question</span>
+               </div>
+      		   <div class="column medium-8">
+                  <p class="input-inline-text">${validateUserForm.question.question}</p>
                </div>
             </div>
        		<div class="row">
@@ -29,11 +35,19 @@
                </div>
                <div class="column medium-8">
                   <form:hidden path="question" />
-                  <form:input path="answer" cssErrorClass="error" />
+                  <form:input path="answer" cssClass="js-auto-focus" cssErrorClass="error js-auto-focus" maxlength="128" />
                   <form:errors path="answer" cssClass="error" element="span" />
                </div>
             </div>
-       		<button type="submit">Validate</button>
+            <div class="row">
+      		   <div class="column medium-4 empty">
+                  
+               </div>
+               <div class="column medium-8">
+                  <button type="submit">Validate</button>
+               </div>
+            </div>
+       		
         	</form:form>
 
 	</jsp:body>

@@ -4,8 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.vistana.domain.User;
 import com.vistana.dto.SecurityQuestionsDTO;
 import com.vistana.dto.UserInfoDTO;
 import com.vistana.enumeration.SecurityQuestion;
@@ -28,8 +26,6 @@ import com.vistana.session.ApplicationSession;
 @Controller
 public class SignupController {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	private ApplicationSession session;
 	
@@ -59,8 +55,7 @@ public class SignupController {
 		if(result.hasErrors()) {
 			return new ModelAndView("signup/personalInformation", map);
 		} else {
-			User user = newUserService.createNewUser(userForm);
-			logger.info(user.getUsername());
+			newUserService.createNewUser(userForm);
 			return new ModelAndView("redirect:/sign-up/security-questions");
 		}
 		

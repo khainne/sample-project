@@ -17,14 +17,16 @@
 	<jsp:body>
 		
 			<h1>Select and Answer Security Questions</h1>
-			<p>Please choose 3 security questions and provide an answer to each.</p>
-			<form:form id="securityQuestionForm" method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate">
+			<form:form cssClass="form" id="securityQuestionForm" method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+			<div class="form--prompt">
+				<p>Please choose 3 security questions and provide an answer to each.</p>
+			</div>
        		<c:forEach var="i" begin="0" end="${numberOfQuestions - 1}">
        			<div class="row">
-      		   <div class="column medium-4">
-                  <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error">Question</form:label>
+      		   <div class="column medium-3">
+                  <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error">Question ${i + 1}</form:label>
                </div>
-               <div class="column medium-8">
+               <div class="column medium-9">
                	  <div class="select-wrapper">
                	  <select class="js-security-question-select">
 					  <option value="-1">Select a Question</option>
@@ -45,20 +47,20 @@
                </div>
             </div>
             <div class="row">
-      		   <div class="column medium-4">
-                  <form:label path="securityQuestionAnswers[${i}].answer" cssErrorClass="error">Answer</form:label>
+      		   <div class="column medium-3">
+                  <form:label path="securityQuestionAnswers[${i}].answer" cssErrorClass="error">Answer ${i + 1}</form:label>
                </div>
-               <div class="column medium-8">
-                  <form:input path="securityQuestionAnswers[${i}].answer" cssErrorClass="error"  />
+               <div class="column medium-9">
+                  <form:input path="securityQuestionAnswers[${i}].answer" cssErrorClass="error" maxlength="128" />
                   <form:errors path="securityQuestionAnswers[${i}].answer" cssClass="error" element="span" />
                </div>
             </div>
        		</c:forEach>
        		<div class="row">
-      		   <div class="column medium-4">
+      		   <div class="column medium-3 empty">
                   
                </div>
-               <div class="column medium-8">
+               <div class="column medium-9">
                   <button type="submit">Continue</button>
                </div>
             </div>
