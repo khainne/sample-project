@@ -53,11 +53,12 @@ function initModal() {
 		}).delay(100).queue(function(next){
 			modal.addClass('is-visible');
 		    next();
+		    var firstInput = modal.find("input:first");
+			firstInput.focus();
 		});
 		
 		modalOverlay.addClass('is-visible');
-		var firstInput = modal.find("input:first");
-		firstInput.focus();
+		
 	}
 	
 	modalOverlay.on("click", function(e) {
