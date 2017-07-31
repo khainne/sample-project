@@ -1,0 +1,64 @@
+body, html {
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+}
+
+.vistana-logo {
+	width: 250px;
+	text-align: center;
+	margin: 0 auto;
+	@include media("<=medium") {
+		
+		width: 40%;
+		span {
+
+			display: none;
+		}
+	}
+}
+.vistana-logo--title {
+	display: block;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #5d6770;
+}
+.vistana-logo--subtitle {
+	display: block;
+	font-size: 0.9rem;
+	margin-top: -1.1rem;
+	letter-spacing: 0.1rem;
+    color: #5d6770;
+    border-top: 1px solid #ccc;
+    padding: 0.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+h1 {
+	font-weight: 300;
+    color: #5d6770;
+    @include media("<=medium") {
+    	font-size: 1.5rem;
+    }
+}
+    
+.alert {
+	background-color: #eaffda;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    h1 {
+    	margin: 0;
+    }
+    p {
+    	margin: 1rem;
+    	&:first-of-type {
+    		margin-top: 0;
+    	}
+    	&:last-child {
+    		margin-bottom: 0;
+    	}
+    }
+}

@@ -1,0 +1,129 @@
+.wrapper {
+	position: relative;
+}
+
+header {
+	position: relative;
+	background: #fcfcfc;
+	padding-bottom: 1.5rem;
+	&:after {
+		    content: '';
+    opacity: 0.1;
+    position: absolute;
+    height: 1.3rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,1+100 */
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+	}
+	@include media("<=medium") {
+		padding-bottom: 0.5rem;
+	}
+}
+
+.content {
+	max-width: 660px;
+	padding: 1rem;
+	box-sizing: border-box;
+	margin: 0 auto;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+    bottom: 0;
+    margin-bottom: -76px;
+    text-align: center;
+    width: 100%;
+    padding: 1.8rem;
+    box-sizing: border-box;
+	a {
+		font-size: 0.9rem;
+	}
+}
+
+.row {
+	&:after {
+		content: "";
+  		display: table;
+  		clear: both;
+	}
+	.column {
+		box-sizing: border-box;
+		float: left;
+		&:after {
+			content: "";
+	  		display: table;
+	  		clear: both;
+		}
+  		&:last-child {
+  			float:right;
+  		}
+		&.medium-1 {
+		   width: 8.33%;
+		}
+		&.medium-2 {
+			width: 16.66%;
+		}
+		&.medium-3 {
+			width: 25%;
+		}
+		&.medium-4 {
+			width: 33.33%;
+		}
+		&.medium-5 {
+			width: 41.66%;
+		}
+		&.medium-6 {
+			width: 50%;
+		}
+		&.medium-7 {
+			width: 58.33%;
+		}
+		&.medium-8 {
+			width: 66.66%;
+		}
+		&.medium-9 {
+			width: 75%;
+		}
+		&.medium-10 {
+			width: 83.33%;
+		}
+		&.medium-11 {
+			width: 91.66%;
+		}
+		&.medium-12 {
+			width: 100%;
+		}
+		@include media("<=medium") {
+			&.medium-1, &.medium-2, &.medium-3, &.medium-4, &.medium-5, &.medium-6, &.medium-7, &.medium-8, &.medium-9, &.medium-10, &.medium-11, &.medium-12 {
+				width: 100%;
+				float: none;
+			}
+		}
+	}
+	
+}
+
+.form {
+	background-color: #fbfbfb;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    @include media("<=medium") {
+    	margin-left: -1rem;
+    	margin-right: -1rem;
+    }
+}
+.form--prompt {
+	background-color: #f4fbfd;
+    padding: 0.1rem 1rem;
+    margin: -1.5rem -1.5rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+    color: #32889d;
+    font-size: 1rem;
+}
