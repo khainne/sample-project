@@ -39,19 +39,11 @@
 		</div>
 		<script>
 			var context = "<c:url value="/" />";
-			var local = "<c:out value="${pageContext.request.locale.language}"/>"; 
+			var local = "<c:out value="${pageContext.response.locale}"/>"; 
 		</script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="<c:url value="/resources/js/jquery.i18n.properties.min.js"/>"></script>
         <script src="<c:url value="/resources/js/app.js"/>"></script>
 		<jsp:invoke fragment="script" />
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
     </body>
 </html>

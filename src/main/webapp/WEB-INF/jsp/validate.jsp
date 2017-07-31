@@ -5,33 +5,27 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="vistana" tagdir="/WEB-INF/tags"%>
 
-<vistana:template title="welcome.title">
-	<jsp:attribute name="header">
-		
-	</jsp:attribute>
-	<jsp:attribute name="script">
-		
-	</jsp:attribute>
+<vistana:template title="validate.title">
 	<jsp:body>
-		
-			<h1>Account Verification</h1>
+			<h1><spring:message code="validate.heading" /></h1>
 			<form:form cssClass="form" id="validateUserForm" method="post" modelAttribute="validateUserForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
        		<div class="form--prompt">
-				<p>Answer the security question to verify your account</p>
+				<p><spring:message code="validate.form.prompt" /></p>
 			</div>
        		<div class="row">
        			<div class="column medium-4">
-                  <span class="label">Your Question</span>
+                  <span class="label"><spring:message code="validate.label.question" htmlEscape="true"/></span>
                </div>
       		   <div class="column medium-8">
-                  <p class="input-inline-text">${validateUserForm.question.question}</p>
+                  <p class="input-inline-text"><spring:message code="securityQuestionEnum.${validateUserForm.question}" /></p>
                </div>
             </div>
        		<div class="row">
       		   <div class="column medium-4">
-                  <form:label path="answer" cssErrorClass="error">Your Answer</form:label>
+                  <form:label path="answer" cssErrorClass="error"><spring:message code="validate.label.answer"/></form:label>
                </div>
                <div class="column medium-8">
                   <form:hidden path="question" />
@@ -44,7 +38,7 @@
                   
                </div>
                <div class="column medium-8">
-                  <button type="submit">Validate</button>
+                  <button type="submit"><spring:message code="validate.button.validate"/></button>
                </div>
             </div>
        		

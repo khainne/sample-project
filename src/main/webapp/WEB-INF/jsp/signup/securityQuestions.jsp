@@ -5,38 +5,33 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="vistana" tagdir="/WEB-INF/tags"%>
 
-<vistana:template title="welcome.title">
-	<jsp:attribute name="header">
-		
-	</jsp:attribute>
-	<jsp:attribute name="script">
-		
-	</jsp:attribute>
+<vistana:template title="security.title">
 	<jsp:body>
 		
-			<h1>Select and Answer Security Questions</h1>
+			<h1><spring:message code="security.heading"/></h1>
 			<form:form cssClass="form" id="securityQuestionForm" method="post" modelAttribute="securityQuestionsForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 			<div class="form--prompt">
-				<p>Please choose 3 security questions and provide an answer to each.</p>
+				<p><spring:message code="security.form.prompt"/></p>
 			</div>
        		<c:forEach var="i" begin="0" end="${numberOfQuestions - 1}">
        			<div class="row">
       		   <div class="column medium-3">
-                  <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error">Question ${i + 1}</form:label>
+                  <form:label path="securityQuestionAnswers[${i}].securityQuestion" cssErrorClass="error"><spring:message code="security.form.label.question"/> ${i + 1}</form:label>
                </div>
                <div class="column medium-9">
                	  <div class="select-wrapper">
                	  <select class="js-security-question-select">
-					  <option value="-1">Select a Question</option>
+					  <option value="-1"><spring:message code="security.form.select.question.prompt"/></option>
 					  <c:forEach items="${securityQuestions}" var="question">
 					  	<c:choose>
 					  		<c:when test="${!empty securityQuestionsForm.securityQuestionAnswers[i].securityQuestion && securityQuestionsForm.securityQuestionAnswers[i].securityQuestion eq question }">
-					  			<option value="${question}" selected>${question.question}</option>
+					  			<option value="${question}" selected><spring:message code="securityQuestionEnum.${question}"/></option>
 					  		</c:when>
 					  		<c:otherwise>
-					  			<option value="${question}">${question.question}</option>		
+					  			<option value="${question}"><spring:message code="securityQuestionEnum.${question}"/></option>		
 					  		</c:otherwise>
 					  	</c:choose>
 					  </c:forEach>
@@ -48,7 +43,7 @@
             </div>
             <div class="row">
       		   <div class="column medium-3">
-                  <form:label path="securityQuestionAnswers[${i}].answer" cssErrorClass="error">Answer ${i + 1}</form:label>
+                  <form:label path="securityQuestionAnswers[${i}].answer" cssErrorClass="error"><spring:message code="security.form.label.answer"/> ${i + 1}</form:label>
                </div>
                <div class="column medium-9">
                   <form:input path="securityQuestionAnswers[${i}].answer" cssErrorClass="error" maxlength="128" />
@@ -61,7 +56,7 @@
                   
                </div>
                <div class="column medium-9">
-                  <button type="submit">Continue</button>
+                  <button type="submit"><spring:message code="security.form.button"/></button>
                </div>
             </div>
         	</form:form>

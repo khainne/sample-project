@@ -35,7 +35,7 @@ public class SecurityQuestionValidator implements Validator {
 				errors.rejectValue("securityQuestionAnswers[" + i + "].answer", "error.security.answer.invalid");
 				logger.error("Security Answer {}: can not be empty", Integer.toString(i));
 			}
-			
+			//check to see if the list of questions contains dupes
 			for (int j = i + 1; j < securityQuestions.getSecurityQuestionAnswers().size() - 1; j++) {
 				if (sqa.getSecurityQuestion().equals(securityQuestions.getSecurityQuestionAnswers().get(j).getSecurityQuestion())) {
 					errors.rejectValue("securityQuestionAnswers[" + j + "].securityQuestion", "error.security.question.duplicate");

@@ -38,27 +38,26 @@ public class ValidationController {
 	
 	@RequestMapping("/validate")
     public ModelAndView showValidateUser(Map<String, Object> map) {
-		if(session.getUser() != null && session.getUser().isValid()) {
+		if(session.getUser() != null && session.getUser().isValid() && !session.getIsLoggedIn()) {
 			map.put("validateUserForm", validateUserService.getValidationQuestionForUser(session.getUser()));
 			return new ModelAndView("validate", map);
 		} else {
 			return new ModelAndView("redirect:/");
 		}
-		
-		
-    }
+	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/validate")
 	public ModelAndView processValidateUser(@ModelAttribute("validateUserForm") ValidateUserDTO validateUserForm, BindingResult result, Map<String, Object> map) {
-		
-		if (securityQuestionService.validateSecurityQuestion(validateUserForm.getQuestion(), validateUserForm.getAnswer(), session.getUser())) {
-			session.setIsLoggedIn(true);
-			return new ModelAndView("redirect:/user-dashboard");
+		if(session.getUser() != null && session.getUser().isValid() && !session.getIsLoggedIn()) {
+			if (securityQuestionService.validateSecurityQuestion(validateUserForm.getQuestion(), validateUserForm.getAnswer(), session.getUser())) {
+				session.setIsLoggedIn(true);
+				return new ModelAndView("redirect:/user-dashboard");
+			} else {
+				result.rejectValue("answer", "error.validate.answer.invalid");
+				return new ModelAndView("validate", map);
+			}
 		} else {
-			result.rejectValue("answer", "error.validate.answer.invalid");
-			return new ModelAndView("validate", map);
+			return new ModelAndView("redirect:/");
 		}
-		
-		
 	}
 }
