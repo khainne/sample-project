@@ -1,3 +1,7 @@
+.wrapper {
+	position: relative;
+}
+
 header {
 	position: relative;
 	background: #fcfcfc;
@@ -28,6 +32,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	box-sizing: border-box;
 	margin: 0 auto;
 	text-align: center;
+}
+
+footer {
+	position: absolute;
+    bottom: 0;
+    margin-bottom: -76px;
+    text-align: center;
+    width: 100%;
+    padding: 1.8rem;
+    box-sizing: border-box;
+	a {
+		font-size: 0.9rem;
+	}
 }
 
 .row {

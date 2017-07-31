@@ -22,14 +22,18 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	
 });
 
 function autoFocus() {
 	$("form").find(".js-auto-focus").focus();
 };
 
+
+
 function initModal() {
-	
+
 	var modals = $('.modal');
 	var modalOverlay = $('#modal-overlay');
 	var modalCloseButtons = $('.js-modal-close');
@@ -38,14 +42,23 @@ function initModal() {
 	$('[data-modal-id]').on("click", function(e){
 	   e.preventDefault();
 	   var data = $(this).data();
-	   var modal = $('#' + data.modalId);
-	   modal.addClass('is-visible');
-	   modalOverlay.addClass('is-visible');
-	   
-	   var firstInput = modal.find("input:first");
-	   firstInput.focus();
+	   modalShow($('#' + data.modalId));
 	   
 	});
+	
+	function modalShow(modal) {
+		$(".modal").addClass("is-hidden").delay(100).queue(function(next){
+		    modal.removeClass('is-hidden');
+		    next();
+		}).delay(100).queue(function(next){
+			modal.addClass('is-visible');
+		    next();
+		});
+		
+		modalOverlay.addClass('is-visible');
+		var firstInput = modal.find("input:first");
+		firstInput.focus();
+	}
 	
 	modalOverlay.on("click", function(e) {
 		e.preventDefault();
@@ -65,6 +78,47 @@ function initModal() {
 		modals.removeClass('is-visible');
 	}
 
+	
+	var sessionTimer;
+	var aboutToLogout = false;
+	var count = 0; 
+	var max_count = 60;
+	var secondTimer;
+	
+	if(loggedIn) {
+		var sessionTimer = setInterval(showSessionModal, 300000);
+		
+		$(document).on('click scroll', function() {
+			console.log('session timer reset');
+			aboutToLogout = false;
+			count = 0;
+			clearInterval(sessionTimer);
+			sessionTimer = setInterval(showSessionModal, 300000);
+		});
+		
+		function showSessionModal() {
+			if(!aboutToLogout) {
+				clearInterval(sessionTimer);
+				clearInterval(secondTimer)
+				modalShow($('#modal-session'));
+				aboutToLogout = true;
+				timedCount();
+			}
+		}
+		
+		function timedCount() {
+		    count = count + 1;
+		   	remaining_time = max_count - count;
+		   	if( remaining_time == 0 && aboutToLogout ){
+		   		location.href = context + "logout";
+
+			} else {
+		    	$('.js-seconds-timer').html(remaining_time);
+		    	secondTimer = setTimeout(function(){timedCount()}, 1000);
+			}
+		}
+	}
+	
 }
 
 

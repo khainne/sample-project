@@ -12,7 +12,7 @@
 <%@ attribute name="bodyCssClass" required="false"%>
 <%@ attribute name="header" required="false" fragment="true"%>
 <%@ attribute name="script" required="false" fragment="true"%>
-
+<%@ attribute name="modal" required="false" fragment="true" %>
 
 <!doctype html>
 <html lang="">
@@ -28,6 +28,7 @@
         <jsp:invoke fragment="header" />
 	</head>
     <body class="${bodyCssClass}">
+    	
     	<header>
 	    	<div class="vistana-logo">
 	    		<vistana:svgVistanaLogo />
@@ -36,10 +37,17 @@
 		</header>
 		<div class="content">
         	<jsp:doBody/>
-		</div>
+        	<div class="modal-stage">
+				<div id="modal-overlay" class="modal-overlay"></div>
+				<jsp:invoke fragment="modal" />
+				<vistana:sessionExpireModal />
+			</div>
+        </div>
+
 		<script>
 			var context = "<c:url value="/" />";
 			var local = "<c:out value="${pageContext.response.locale}"/>"; 
+			var loggedIn = ${sessionScope['scopedTarget.applicationSession'].isLoggedIn}
 		</script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="<c:url value="/resources/js/jquery.i18n.properties.min.js"/>"></script>

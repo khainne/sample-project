@@ -41,4 +41,11 @@ button, .button {
     &.centered {
         margin: 0 auto;
     }
+    &.expanded {
+        width: 100%;
+        max-width: 100%;
+    }
+    & + .button {
+        margin-top: 0.5rem;
+    }
 }

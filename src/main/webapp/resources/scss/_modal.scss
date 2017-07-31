@@ -47,6 +47,9 @@
 		transition-timing-function: ease-out;
 		transform: perspective(1000px) rotateX( 0deg ) translate3d(0px,0px,0px);
 	}
+    &.is-hidden {
+        display: none;
+    }
 }
 .modal--content {
 	padding: 2rem;
@@ -91,3 +94,18 @@
     	background-color: #96dced;
     }
 }
+
+.clock--seconds-timer {
+    font-size: 6rem;
+    font-weight: 200;
+    line-height: 5rem;
+    color: #8a8bb4;
+}
+
+.clock--seconds-label {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #8a8bb4;
+}
+

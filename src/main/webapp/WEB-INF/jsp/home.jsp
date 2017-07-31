@@ -56,13 +56,16 @@
 			}
 		</script>
 	</jsp:attribute>
+	<jsp:attribute name="modal">
+		<vistana:loginModal />
+	</jsp:attribute>
 	<jsp:body>
 	<c:if test="${!empty session && !empty session.user && session.user.isValid()}">
 		<div class="alert">
 			<c:choose>
 				<c:when test="${session.isLoggedIn}">
 					<h1><spring:message code="welcome.loggedIn.heading" htmlEscape="true" arguments="${session.user.username}"/></h1>
-					<p><spring:message code="welcome.loggedIn.heading" arguments="<a href=\"${dashboardURL}\">${dashboardLabel}</a>,<a href=\"${logoutURL}\">${logoutLabel}</a>"/></p>
+					<p><spring:message code="welcome.loggedIn.message" arguments="<a href=\"${dashboardURL}\">${dashboardLabel}</a>,<a href=\"${logoutURL}\">${logoutLabel}</a>"/></p>
 				</c:when>
 				<c:otherwise>
 					<h1><spring:message code="welcome.newUser.heading" htmlEscape="true"/></h1>
@@ -83,31 +86,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-stage">
-			<div id="modal-overlay" class="modal-overlay">
-			</div>
-				<div id="modal-login" class="modal js-modal">
-				<a href="#" class="modal--close js-modal-close"><vistana:svgIcon height="24" width="24" icon="close" title="global.modal.close" /></a>
-					<div class="modal--content">
-						<h1><spring:message code="welcome.login.heading"/></h1>
-						<form action="<c:url value="/validate-username"/>" id="validateUsernameForm" novalidate="novalidate" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-							<div class="modal--errors js-modal-error-display js-login-errors"></div>
-							<div class="input-group">
-								<div class="row">
-									<div class="column medium-12">
-										<label for="username"><spring:message code="welcome.login.label.username"/></label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="column medium-12">
-										<input id="username" name="username" type="text" maxlength="12" />
-									</div>
-								</div>
-							</div>
-							<button type="submit">${loginLabel}</button>
-						</form>
-					</div>
-				</div>
-			</div>
+			<a href="<c:url value="?lang=en"/>">English</a> | <a href="<c:url value="?lang=es"/>">Spanish</a>
 	</jsp:body>
 </vistana:template>
