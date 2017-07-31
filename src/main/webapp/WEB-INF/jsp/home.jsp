@@ -43,7 +43,7 @@
 					
 					function displayError(message) {
 						errorDisplay.empty();
-						errorDisplay.prepend( "<span class=\"error\">" + message + "</span>" ).fadeIn('slow');
+						errorDisplay.prepend( "<span class=\"error\">" + message + "</span>" ).show();
 					}
 				});
 			});
