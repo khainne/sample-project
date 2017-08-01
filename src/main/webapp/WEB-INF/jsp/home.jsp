@@ -59,24 +59,24 @@
       <vistana:loginModal />
    </jsp:attribute>
    <jsp:body>
-      <c:if test="${!empty session && !empty session.user && session.user.isValid()}">
-         <div class="alert">
-            <c:choose>
-               <c:when test="${sessionScope['scopedTarget.applicationSession'].isLoggedIn}">
+      <c:choose>
+               <c:when test="${!empty sessionScope['scopedTarget.applicationSession'] && !empty sessionScope['scopedTarget.applicationSession'].user && sessionScope['scopedTarget.applicationSession'].isLoggedIn}">
+                  <div class="alert">
                   <h1>
                      <spring:message code="welcome.loggedIn.heading" htmlEscape="true" arguments="${sessionScope['scopedTarget.applicationSession'].user.username}"/>
                   </h1>
                   <p><spring:message code="welcome.loggedIn.message" arguments="<a href=\"${dashboardURL}\">${dashboardLabel}</a>,<a href=\"${logoutURL}\">${logoutLabel}</a>"/></p>
+                  </div>
                </c:when>
-               <c:otherwise>
+               <c:when test="${!empty sessionScope['scopedTarget.applicationSession'] && !empty sessionScope['scopedTarget.applicationSession'].newUser && sessionScope['scopedTarget.applicationSession'].newUser.isValid()}">
+                  <div class="alert">
                   <h1>
                      <spring:message code="welcome.newUser.heading" htmlEscape="true"/>
                   </h1>
                   <p><spring:message code="welcome.newUser.message" arguments="<a href=\"#\" data-modal-id=\"modal-login\">${loginLabel}</a>"/></p>
-               </c:otherwise>
-            </c:choose>
-         </div>
-      </c:if>
+                  </div>
+               </c:when>
+      </c:choose>
       <h1>
          <spring:message code="welcome.heading"/>
       </h1>

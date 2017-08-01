@@ -7,12 +7,12 @@
 
 <c:url value="/sign-up" var="signupURL" />
 
-<fmt:formatDate pattern="MMMM dd, yyyy" value="${session.user.dob}" var="formattedDob" />
+<fmt:formatDate pattern="MMMM dd, yyyy" value="${sessionScope['scopedTarget.applicationSession'].user.dob}" var="formattedDob" />
 <vistana:template title="dashboard.title">
    <jsp:body>
-      <c:if test="${!empty session.user && session.isLoggedIn}">
+      <c:if test="${!empty sessionScope['scopedTarget.applicationSession'].user && sessionScope['scopedTarget.applicationSession'].isLoggedIn}">
          <h1>
-            <spring:message code="dashboard.heading" htmlEscape="true" arguments="${session.user.username}" />
+            <spring:message code="dashboard.heading" htmlEscape="true" arguments="${sessionScope['scopedTarget.applicationSession'].user.username}" />
          </h1>
          <p>
             <spring:message code="dashboard.message" htmlEscape="true" arguments="${formattedDob}" argumentSeparator=";" />

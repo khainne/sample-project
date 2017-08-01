@@ -11,13 +11,9 @@ import com.vistana.session.ApplicationSession;
 
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private ApplicationSession session;
-	
+		
 	@RequestMapping("/")
     public ModelAndView greeting(Map<String, Object> map) {
-		map.put("session", session);
 		return new ModelAndView("home", map);
     }
 }

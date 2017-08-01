@@ -28,6 +28,7 @@
    <body class="${bodyCssClass}">
       <header>
          <div class="vistana-logo">
+         	<a href="<c:url value="/" />" style="text-decoration: none">
             <vistana:svgVistanaLogo />
             <span class="vistana-logo--subtitle">
                <spring:message code="global.logo.subHeading" />
@@ -35,6 +36,7 @@
             <span class="vistana-logo--title">
                <spring:message code="global.logo.heading" />
             </span>
+            </a>
          </div>
       </header>
       <div class="content">
@@ -48,7 +50,7 @@
       <script>
          var context = "<c:url value="/" />";
          var local = "<c:out value="${pageContext.response.locale}"/>"; 
-         var loggedIn = ${sessionScope['scopedTarget.applicationSession'].isLoggedIn}
+         var loggedIn = <c:out value="${sessionScope['scopedTarget.applicationSession'].isLoggedIn ? true: false}"/>;
       </script>
       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
       <script src="<c:url value="/resources/js/jquery.i18n.properties.min.js"/>"></script>

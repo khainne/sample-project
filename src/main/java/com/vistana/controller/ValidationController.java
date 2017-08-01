@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.vistana.dto.ValidateUserDTO;
+import com.vistana.exception.UserNotFoundException;
 import com.vistana.service.SecurityQuestionService;
+import com.vistana.service.UserSessionService;
 import com.vistana.service.ValidateUserService;
-import com.vistana.session.ApplicationSession;
 
 @Controller
 public class ValidationController {
@@ -27,19 +27,23 @@ public class ValidationController {
 	private SecurityQuestionService securityQuestionService;
 	
 	@Autowired
-	private ApplicationSession session;
-	
+	private UserSessionService userSessionService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/validate-username")
 	@ResponseBody
 	public Boolean processValidateUsername(@ModelAttribute("username") String username) {
-		return validateUserService.validateLogin(username);
+		try {
+			userSessionService.validateLogin(username);
+			return true;
+		} catch (UserNotFoundException e) {
+			return false;
+		}
 	}
 	
 	@RequestMapping("/validate")
     public ModelAndView showValidateUser(Map<String, Object> map) {
-		if(session.getUser() != null && session.getUser().isValid() && !session.getIsLoggedIn()) {
-			map.put("validateUserForm", validateUserService.getValidationQuestionForUser(session.getUser()));
+		if(userSessionService.getValidatedUser() != null && userSessionService.getValidatedUser().isValid() && !userSessionService.getIsLoggedIn()) {
+			map.put("validateUserForm", validateUserService.getValidationQuestionForUser(userSessionService.getValidatedUser()));
 			return new ModelAndView("validate", map);
 		} else {
 			return new ModelAndView("redirect:/");
@@ -48,9 +52,9 @@ public class ValidationController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/validate")
 	public ModelAndView processValidateUser(@ModelAttribute("validateUserForm") ValidateUserDTO validateUserForm, BindingResult result, Map<String, Object> map) {
-		if(session.getUser() != null && session.getUser().isValid() && !session.getIsLoggedIn()) {
-			if (securityQuestionService.validateSecurityQuestion(validateUserForm.getQuestion(), validateUserForm.getAnswer(), session.getUser())) {
-				session.setIsLoggedIn(true);
+		if(userSessionService.getValidatedUser() != null && userSessionService.getValidatedUser().isValid() && !userSessionService.getIsLoggedIn()) {
+			if (securityQuestionService.validateSecurityQuestion(validateUserForm.getQuestion(), validateUserForm.getAnswer(), userSessionService.getValidatedUser())) {
+				userSessionService.loginUser(userSessionService.getValidatedUser());
 				return new ModelAndView("redirect:/user-dashboard");
 			} else {
 				result.rejectValue("answer", "error.validate.answer.invalid");

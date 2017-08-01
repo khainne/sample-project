@@ -13,7 +13,7 @@ import com.vistana.dto.UserInfoDTO;
 public interface NewUserService {
 	User createNewUser(String username, Date dob);
 	User createNewUser(UserInfoDTO userInfoDTO);
-	User addSecurityQuestions(List<SecurityQuestionAnswer> securityQuestionAnswers);
-	User addSecurityQuestions(SecurityQuestionsDTO securityQuestionsDTO);
+	User addSecurityQuestions(User user, List<SecurityQuestionAnswer> securityQuestionAnswers);
+	User addSecurityQuestions(User user, SecurityQuestionsDTO securityQuestionsDTO);
 	void validateNewUser(UserInfoDTO userInfoDTO, BindingResult result);
 }

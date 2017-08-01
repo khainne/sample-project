@@ -16,24 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vistana.domain.User;
 import com.vistana.dto.SecurityQuestionsDTO;
 import com.vistana.dto.UserInfoDTO;
 import com.vistana.enumeration.SecurityQuestion;
 import com.vistana.service.NewUserService;
 import com.vistana.service.SecurityQuestionService;
-import com.vistana.session.ApplicationSession;
+import com.vistana.service.UserSessionService;
 
 @Controller
 public class SignupController {
 
 	@Autowired
-	private ApplicationSession session;
-	
-	@Autowired
 	private NewUserService newUserService;
 	
 	@Autowired
 	private SecurityQuestionService securityQuestionService;
+	
+	@Autowired
+	private UserSessionService userSessionService;
 	
 	@ModelAttribute("numberOfQuestions")
 	public int getOffering() {
@@ -55,7 +56,9 @@ public class SignupController {
 		if(result.hasErrors()) {
 			return new ModelAndView("signup/personalInformation", map);
 		} else {
-			newUserService.createNewUser(userForm);
+			User newUser = newUserService.createNewUser(userForm);
+			userSessionService.createNewUser(newUser);
+			
 			return new ModelAndView("redirect:/sign-up/security-questions");
 		}
 		
@@ -65,7 +68,7 @@ public class SignupController {
 	@RequestMapping("/sign-up/security-questions")
     public ModelAndView showSecurityQuestions(Map<String, Object> map) {
 		//quick check to see if they completed the first step
-		if(session.getUser() == null) {
+		if(userSessionService.getNewUser() == null) {
 			return new ModelAndView("redirect:/sign-up/");
 		}
 		
@@ -76,8 +79,8 @@ public class SignupController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/sign-up/security-questions")
 	public ModelAndView processSecurityQuestions(@ModelAttribute("securityQuestionsForm") SecurityQuestionsDTO securityQuestionsForm, BindingResult result, Map<String, Object> map) {
-		//quick check to see if they completed the first step
-		if(session.getUser() == null) {
+		
+		if(userSessionService.getNewUser() == null) {
 			return new ModelAndView("redirect:/sign-up/");
 		}
 		
@@ -87,7 +90,11 @@ public class SignupController {
 			map.put("securityQuestions", SecurityQuestion.values());
 			return new ModelAndView("signup/securityQuestions", map);
 		} else {
-			newUserService.addSecurityQuestions(securityQuestionsForm);
+			
+			User newUser = userSessionService.getNewUser();
+			newUserService.addSecurityQuestions(newUser, securityQuestionsForm);
+			userSessionService.addUserToList(newUser);
+			
 			return new ModelAndView("redirect:/");
 		}
 	}
