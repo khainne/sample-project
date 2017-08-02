@@ -33,6 +33,7 @@ public class ValidationController {
 	@ResponseBody
 	public Boolean processValidateUsername(@ModelAttribute("username") String username) {
 		try {
+			userSessionService.logoutUser();
 			userSessionService.validateLogin(username);
 			return true;
 		} catch (UserNotFoundException e) {
